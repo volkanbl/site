@@ -1,1 +1,718 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextGenGrow — Otonom Topraksız Tarım</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green-50: #e8f5e4;
+  --green-100: #c5e3bb;
+  --green-200: #98cc84;
+  --green-400: #4a9632;
+  --green-500: #2e7218;
+  --green-600: #1c5109;
+  --green-700: #0d3002;
+  --cream: #f5f0e8;
+  --cream-dark: #ede6d6;
+  --ink: #1a1a12;
+  --ink-soft: #3d3d2e;
+  --pesto: #5a6b2a;
+  --rust: #c45c2a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 5vw;
+  background: rgba(245,240,232,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(90,107,42,0.15);
+}
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem; color: var(--green-500);
+  text-decoration: none; letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--rust); font-style: italic; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.85rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-soft);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--green-500); }
+.nav-cta {
+  background: var(--green-500) !important;
+  color: var(--cream) !important;
+  padding: 0.55rem 1.4rem; border-radius: 2rem;
+  font-size: 0.8rem !important; letter-spacing: 0.1em !important;
+}
+.nav-cta:hover { background: var(--green-600) !important; }
+
+/* HERO - Tam Ekran Uyumlu */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  padding: 8rem 5vw 4rem; gap: 4vw;
+  position: relative; overflow: hidden;
+  width: 100%;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(90,107,42,0.12);
+  border: 1px solid rgba(90,107,42,0.3);
+  border-radius: 2rem; padding: 0.4rem 1rem;
+  font-size: 0.78rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--pesto);
+  margin-bottom: 1.5rem;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green-400);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  line-height: 1.0; letter-spacing: -0.03em;
+  color: var(--ink); margin-bottom: 1.5rem;
+}
+.hero-title em { color: var(--green-500); font-style: italic; font-size: 0.9em; }
+.hero-title .line-rust { color: var(--rust); }
+.hero-sub {
+  font-size: 1.05rem; line-height: 1.75;
+  color: var(--ink-soft); max-width: 540px;
+  margin-bottom: 2.5rem; font-weight: 300;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn-primary {
+  display: inline-block; background: var(--green-500); color: var(--cream);
+  padding: 0.85rem 2.2rem; border-radius: 3rem;
+  font-size: 0.9rem; font-weight: 500; text-decoration: none;
+  letter-spacing: 0.04em; transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--green-600); transform: translateY(-1px); }
+
+.btn-outline {
+  display: inline-block;
+  border: 1.5px solid var(--ink-soft); color: var(--ink-soft);
+  padding: 0.85rem 2.2rem; border-radius: 3rem;
+  font-size: 0.9rem; text-decoration: none; letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--green-500); color: var(--green-500); }
+
+/* HERO VISUAL */
+.hero-visual { position: relative; display: flex; align-items: center; justify-content: center; width: 100%;}
+.hero-ring {
+  width: min(500px, 45vw); height: min(500px, 45vw);
+  border-radius: 50%; border: 1.5px solid rgba(74,150,50,0.2);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; animation: spin-slow 40s linear infinite;
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.hero-ring::before {
+  content: ''; position: absolute; inset: 10%; border-radius: 50%;
+  border: 1px dashed rgba(74,150,50,0.15);
+}
+.hero-inner {
+  width: 68%; height: 68%; border-radius: 50%;
+  background: linear-gradient(145deg, #c5e3bb 0%, #6ab54e 60%, #2e7218 100%);
+  display: flex; align-items: center; justify-content: center;
+  animation: counter-spin 40s linear infinite;
+}
+@keyframes counter-spin { to { transform: rotate(-360deg); } }
+.hero-leaf { font-size: clamp(3rem, 5vw, 4.5rem); animation: bob 3s ease-in-out infinite; display: flex; gap: 10px; }
+@keyframes bob {
+  0%,100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-8px) rotate(5deg); }
+}
+.orbit-dot {
+  position: absolute; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--green-400);
+  top: 0; left: 50%; transform: translateX(-50%) translateY(-4px);
+}
+.stat-card {
+  position: absolute; background: var(--cream);
+  border: 1px solid rgba(90,107,42,0.2);
+  border-radius: 12px; padding: 0.8rem 1.2rem;
+  font-size: 0.78rem; color: var(--ink-soft);
+  animation: counter-spin 40s linear infinite;
+  white-space: nowrap; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.stat-card strong { display: block; font-size: 1.1rem; color: var(--green-500); font-weight: 500; }
+.sc1 { bottom: 8%; left: -10%; }
+.sc2 { top: 10%; right: -8%; }
+
+/* KAYAN YAZI (İLK HALİ) */
+.marquee-wrap {
+  overflow: hidden; background: var(--green-700); padding: 0.9rem 0; width: 100%;
+}
+.marquee-track {
+  display: flex; gap: 3rem;
+  animation: marquee 22s linear infinite;
+  width: max-content;
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-item {
+  font-size: 0.78rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--green-100);
+  display: flex; align-items: center; gap: 1rem; white-space: nowrap;
+}
+.marquee-item::after { content: '✦'; color: var(--green-400); font-size: 0.6rem; }
+
+/* SECTIONS BASE */
+.section-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pesto); margin-bottom: 1rem; }
+.section-title {
+  font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 3.5vw, 3.2rem);
+  line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem;
+}
+.section-title em { color: var(--green-500); font-style: italic; }
+
+/* AVANTAJLAR - %100 Ekran Kaplama */
+.about-grid {
+  display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6vw; align-items: center;
+  background: var(--cream-dark); padding: 7rem 5vw;
+  width: 100%;
+  border-top: 1px solid rgba(90,107,42,0.1);
+  border-bottom: 1px solid rgba(90,107,42,0.1);
+}
+.about-grid p { font-size: 1rem; line-height: 1.85; color: var(--ink-soft); font-weight: 300; margin-bottom: 1.2rem; max-width: 800px; }
+.metrics-box {
+  background: var(--green-700); border-radius: 24px; padding: 3rem; color: var(--cream);
+  position: relative; overflow: hidden; width: 100%;
+}
+.metrics-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-200); margin-bottom: 2rem; }
+.metric-row { display: flex; align-items: flex-end; gap: 1rem; margin-bottom: 2rem; }
+.m-bar { flex-grow: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; position: relative; }
+.m-fill { position: absolute; left: 0; top: 0; height: 100%; background: var(--green-200); border-radius: 10px; }
+.m-info { width: 140px; text-align: right; }
+.m-val { font-family: 'DM Serif Display', serif; font-size: 1.5rem; display: block; }
+.m-lbl { font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; }
+
+/* SİSTEM - %100 Genişlik */
+.sistem-wrap { padding: 7rem 5vw; text-align: center; background: var(--cream); width: 100%; }
+.how-sub { font-size: 1rem; color: var(--ink-soft); font-weight: 300; max-width: 600px; margin: 0 auto 4rem; line-height: 1.7;}
+.steps {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(90,107,42,0.15);
+  border: 1px solid rgba(90,107,42,0.15); width: 100%;
+}
+.step { background: var(--cream); padding: 3.5rem 2vw; text-align: left; transition: background 0.25s; }
+.step:hover { background: var(--green-50); }
+.step-num { font-family: 'DM Serif Display', serif; font-size: 3.5rem; color: rgba(90,107,42,0.12); line-height: 1; margin-bottom: 1rem; }
+.step-icon { font-size: 2rem; margin-bottom: 1rem; }
+.step h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--ink); margin-bottom: 0.8rem; }
+.step p { font-size: 0.9rem; line-height: 1.7; color: var(--ink-soft); font-weight: 300; }
+
+/* EV SİSTEMLERİ - Tam Ekran Kaplama */
+.ev-wrap { background: var(--ink); color: var(--cream); padding: 7rem 5vw; width: 100%; }
+.ev-wrap .section-label { color: var(--green-400); }
+.ev-wrap .section-title { color: var(--cream); }
+.ev-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 6vw; align-items: center; width: 100%; }
+.ev-features .tf-content h4 { color: var(--cream) !important; }
+.ev-features .tf-content p { color: rgba(255,255,255,0.7) !important; }
+.ev-features .tf-icon { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--green-400); }
+
+.tech-feature { display: grid; grid-template-columns: 48px 1fr; gap: 1.5rem; align-items: start; padding: 1.8rem 0; border-bottom: 1px solid rgba(90,107,42,0.12); }
+.ev-features .tech-feature { border-bottom: 1px solid rgba(255,255,255,0.1); }
+.tech-feature:first-child { border-top: 1px solid rgba(90,107,42,0.12); }
+.ev-features .tech-feature:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
+.tf-icon { width: 48px; height: 48px; background: var(--green-50); border: 1px solid rgba(90,107,42,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.tf-content h4 { font-weight: 500; font-size: 1.05rem; color: var(--ink); margin-bottom: 0.4rem; }
+.tf-content p { font-size: 0.9rem; line-height: 1.65; color: var(--ink-soft); font-weight: 300; }
+
+.phone-container { display: flex; justify-content: center; align-items: center; width: 100%; }
+.phone-mockup {
+  width: 320px; height: 640px; background: #000; border-radius: 48px;
+  border: 12px solid #1a1a1a; box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 0 2px #333;
+  position: relative; overflow: hidden; display: flex; flex-direction: column;
+}
+.phone-mockup::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 130px; height: 30px;
+  background: #1a1a1a; border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; z-index: 10;
+}
+.app-screen {
+  background: #0f100f; flex-grow: 1; padding: 3.5rem 1.2rem 1rem;
+  position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 0.8rem;
+}
+.app-screen::after {
+  content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px;
+  background: rgba(74,150,50,0.3); filter: blur(70px); z-index: 0; pointer-events: none;
+}
+.app-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; position: relative; z-index: 1; }
+.app-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: #fff; font-style: italic;}
+.app-title span { color: var(--green-400); }
+.app-status { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; color: var(--green-400); letter-spacing: 0.1em; font-weight: 500;}
+.app-status .dot { width: 6px; height: 6px; background: var(--green-400); border-radius: 50%; box-shadow: 0 0 8px var(--green-400); animation: pulse 2s infinite; }
+
+.app-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 1.2rem; backdrop-filter: blur(12px); position: relative; z-index: 1; }
+.app-card h4 { font-size: 0.65rem; color: #999; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+.app-card .val { font-family: 'DM Serif Display', serif; font-size: 2rem; color: #fff; display: block; line-height: 1; margin-bottom: 0.4rem;}
+.app-card .unit { font-family: 'Instrument Sans', sans-serif; font-size: 0.8rem; color: #aaa; }
+.app-card.highlight { border-color: rgba(74,150,50,0.4); background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(74,150,50,0.08)); }
+.app-card.highlight .val { color: var(--green-400); }
+
+.app-btn-wrap { margin-top: auto; position: relative; z-index: 1; text-align: center; }
+.app-btn {
+  background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); border: 1px dashed rgba(255,255,255,0.2);
+  width: 100%; padding: 1rem; border-radius: 16px; font-family: 'Instrument Sans', sans-serif;
+  font-weight: 500; font-size: 0.9rem; cursor: not-allowed; transition: background 0.2s;
+}
+.app-note { display: block; font-size: 0.65rem; color: #666; margin-top: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+/* TEKNOLOJİ - Tam Ekran */
+.tech-wrap { background: var(--cream-dark); padding: 7rem 5vw; width: 100%; border-bottom: 1px solid rgba(90,107,42,0.1); }
+.tech-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6vw; align-items: center; width: 100%; }
+.t-feature-list { display: flex; flex-direction: column; }
+.t-row { display: flex; gap: 1.5rem; padding: 1.8rem 0; border-bottom: 1px solid rgba(90,107,42,0.15); align-items: flex-start; }
+.t-row:first-child { border-top: 1px solid rgba(90,107,42,0.15); }
+.t-icon-box { width: 52px; height: 52px; background: var(--cream); border: 1px solid rgba(90,107,42,0.2); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+.t-text h4 { font-size: 1.05rem; color: var(--ink); font-weight: 500; margin-bottom: 0.4rem; }
+.t-text p { font-size: 0.88rem; line-height: 1.6; color: var(--ink-soft); font-weight: 300; }
+
+.tech-css-art {
+  width: 100%; aspect-ratio: 4/5;
+  background: radial-gradient(circle at center, #1a2a14 0%, #0d1a08 100%);
+  border-radius: 24px; position: relative; overflow: hidden;
+  box-shadow: 0 20px 40px rgba(13,48,2,0.15);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(152,204,132,0.2);
+}
+.tech-css-art::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(152,204,132,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(152,204,132,0.05) 1px, transparent 1px);
+  background-size: 30px 30px; opacity: 0.5;
+}
+.core-node {
+  position: relative; width: 80px; height: 80px;
+  background: var(--green-500); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 30px var(--green-400), inset 0 0 20px var(--green-200);
+  z-index: 2;
+}
+.core-node::after { content: 'AI'; font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--cream); }
+.core-pulse {
+  position: absolute; inset: -20px; border-radius: 50%;
+  border: 2px solid var(--green-400); animation: radar 3s infinite ease-out; opacity: 0;
+}
+@keyframes radar { 0% { transform: scale(0.8); opacity: 0.8; } 100% { transform: scale(2.5); opacity: 0; } }
+.data-line {
+  position: absolute; background: rgba(152,204,132,0.4);
+  z-index: 1; display: flex; align-items: center;
+}
+.data-line::before {
+  content: ''; position: absolute; width: 6px; height: 6px;
+  background: var(--green-200); border-radius: 50%;
+  box-shadow: 0 0 10px var(--green-200);
+}
+.data-tag {
+  background: rgba(13,48,2,0.8); border: 1px solid var(--green-400);
+  color: var(--green-100); padding: 0.3rem 0.6rem; border-radius: 8px;
+  font-size: 0.75rem; letter-spacing: 0.1em; white-space: nowrap;
+}
+.dl1 { width: 120px; height: 2px; top: 30%; left: 50%; transform-origin: left; transform: rotate(-35deg); }
+.dl1::before { right: 0; }
+.dl1 .data-tag { position: absolute; right: -60px; transform: rotate(35deg); }
+
+.dl2 { width: 140px; height: 2px; top: 50%; right: 50%; transform-origin: right; transform: rotate(-15deg); }
+.dl2::before { left: 0; }
+.dl2 .data-tag { position: absolute; left: -70px; transform: rotate(15deg); }
+
+.dl3 { width: 110px; height: 2px; bottom: 25%; left: 50%; transform-origin: left; transform: rotate(45deg); }
+.dl3::before { right: 0; }
+.dl3 .data-tag { position: absolute; right: -50px; transform: rotate(-45deg); }
+
+/* VİZYON - Tam Genişlik */
+.vizyon-wrap { background: var(--green-700); padding: 7rem 5vw; width: 100%; }
+.vizyon-wrap .section-label { color: var(--green-200); }
+.vizyon-wrap .section-title { color: var(--cream); }
+.vizyon-wrap .section-title em { color: var(--green-200); }
+.vision-intro { font-size: 1.05rem; color: var(--green-100); font-weight: 300; max-width: 600px; line-height: 1.75; margin-bottom: 4rem; }
+.vision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; width: 100%; }
+.vision-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 3rem 2.5rem; color: var(--cream); transition: background 0.25s, transform 0.2s; }
+.vision-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+.vision-card.featured { background: var(--rust); border-color: transparent; }
+.vision-card.featured:hover { background: #d46530; }
+.vicon { font-size: 2.8rem; margin-bottom: 1.2rem; }
+.vision-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 0.8rem; line-height: 1.2; }
+.vision-card p { font-size: 0.95rem; line-height: 1.75; opacity: 0.85; font-weight: 300; }
+.vision-tag { display: inline-block; margin-top: 1.5rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 2rem; background: rgba(255,255,255,0.15); }
+
+/* İLETİŞİM KISMI (İLK HALİNE DÖNDÜ & SAYFAYI KAPLADI) */
+.cta-wrap {
+  text-align: center;
+  background: var(--cream-dark); /* Açık renge geri döndü */
+  padding: 8rem 5vw;
+  width: 100%;
+  border-top: 1px solid rgba(90,107,42,0.15);
+}
+.cta-sub { font-size: 1.05rem; color: var(--ink-soft); font-weight: 300; max-width: 500px; margin: 0 auto 3rem; line-height: 1.75; }
+.cta-email {
+  display: inline-block; background: var(--green-500); color: var(--cream);
+  padding: 1.2rem 3rem; border-radius: 3rem; font-size: 1.1rem; font-weight: 500;
+  text-decoration: none; letter-spacing: 0.04em; transition: background 0.2s, transform 0.15s;
+}
+.cta-email:hover { background: var(--green-600); transform: translateY(-1px); }
+
+/* FOOTER - Tam Genişlik */
+footer { display: flex; justify-content: space-between; align-items: center; padding: 3rem 5vw; width: 100%; background: var(--cream); }
+.footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--green-500); text-decoration: none; }
+.footer-logo span { color: var(--rust); font-style: italic; }
+.footer-copy { font-size: 0.85rem; color: var(--ink-soft); opacity: 0.6; }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-size: 0.85rem; color: var(--ink-soft); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
+.footer-links a:hover { opacity: 1; }
+
+/* MOBİL VE TABLET UYUMLULUK (Responsive Yapı) */
+@media (max-width: 900px) {
+  nav { padding: 1.5rem 5vw; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 8rem 5vw 4rem; text-align: center; }
+  .hero-sub { margin: 0 auto 2.5rem; }
+  .hero-actions { justify-content: center; }
+  .hero-visual { order: -1; }
+  .hero-ring { width: 300px; height: 300px; }
+  .sc1, .sc2 { display: none; }
+
+  .about-grid, .ev-grid, .tech-container, .vision-grid { grid-template-columns: 1fr; gap: 4rem; }
+  .steps { grid-template-columns: 1fr 1fr; }
+
+  .phone-mockup { transform: scale(0.9); transform-origin: top center; margin-bottom: -60px; }
+
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 3rem 5vw; }
+}
+
+@media (max-width: 600px) {
+  .hero-title { font-size: 3.2rem; }
+  .hero-ring { width: 260px; height: 260px; }
+  .steps { grid-template-columns: 1fr; }
+  .phone-mockup { transform: scale(0.8); margin-bottom: -120px; }
+
+  .about-grid { padding: 5rem 5vw; }
+  .sistem-wrap, .ev-wrap, .tech-wrap, .vizyon-wrap, .cta-wrap { padding: 5rem 5vw; }
+  .metric-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .m-info { text-align: left; width: 100%; display: flex; justify-content: space-between; align-items: center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">NextGenGrow<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#avantajlar">Avantajlar</a></li>
+    <li><a href="#sistem">Sistem</a></li>
+    <li><a href="#ev-sistemleri">Ev Modeli</a></li>
+    <li><a href="#teknoloji">Teknoloji</a></li>
+    <li><a href="#iletisim" class="nav-cta">İletişim</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-badge"><div class="dot"></div>Otonom Sistem — Aktif Geliştirme</div>
+    <h1 class="hero-title">
+      Topraksız<br>
+      <em>fesleğen & çilek</em><br>
+      <span class="line-rust">yetiştiriciliği.</span>
+    </h1>
+    <p class="hero-sub">
+      Yapay zeka destekli hidroponik sistemlerle yıl boyu taze fesleğen ve sulu çilekler üretmeyi, doğal hasatlarımızı doğrudan size ulaştırmayı hedefliyoruz.
+    </p>
+    <div class="hero-actions">
+      <a href="#sistem" class="btn-primary">Sistemi Keşfet</a>
+      <a href="#vizyon" class="btn-outline">Vizyonumuzu Gör</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-ring">
+      <div class="orbit-dot"></div>
+      <div class="hero-inner">
+        <div class="hero-leaf">🌿🍓</div>
+      </div>
+    </div>
+    <div class="stat-card sc1"><strong>%95</strong>daha az su kullanımı</div>
+    <div class="stat-card sc2"><strong>365 gün</strong>kesintisiz hasat</div>
+  </div>
+</section>
+
+<!-- KAYAN YAZI -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Hidroponik sistem</span>
+    <span class="marquee-item">Yapay zeka kontrolü</span>
+    <span class="marquee-item">Taze fesleğen ve çilek</span>
+    <span class="marquee-item">Sürdürülebilir tarım</span>
+    <span class="marquee-item">Sıfır toprak, sıfır ilaç</span>
+    <span class="marquee-item">Kapalı döngü sistem</span>
+
+    <span class="marquee-item">Hidroponik sistem</span>
+    <span class="marquee-item">Yapay zeka kontrolü</span>
+    <span class="marquee-item">Taze fesleğen ve çilek</span>
+    <span class="marquee-item">Sürdürülebilir tarım</span>
+    <span class="marquee-item">Sıfır toprak, sıfır ilaç</span>
+    <span class="marquee-item">Kapalı döngü sistem</span>
+  </div>
+</div>
+
+<div id="avantajlar" class="about-grid">
+  <div>
+    <div class="section-label">Hidroponik Nedir?</div>
+    <h2 class="section-title">Toprağa değil,<br><em>veriye ve suya</em> güvenin.</h2>
+    <p>
+      <strong>Hidroponik</strong>, bitkilerin toprak yerine ihtiyaç duydukları tüm mineralleri içeren zenginleştirilmiş su solüsyonlarında yetiştirildiği yenilikçi bir tarım yöntemidir. Toprağın getirdiği hastalık, zararlı böcek ve verimsizlik risklerini tamamen ortadan kaldırır.
+    </p>
+    <p>
+      NextGenGrow olarak bu yöntemi akıllı sensörler ve otonom yazılımlarla birleştiriyoruz. Kapalı döngü sistemimizde bitkileriniz yılın 365 günü en verimli koşullarda, dış etkenlerden bağımsız olarak büyür.
+    </p>
+  </div>
+  <div class="metrics-box">
+    <div class="metrics-label">Geleneksel Tarıma Kıyasla Avantajlar</div>
+    <div class="metric-row">
+      <div class="m-bar"><div class="m-fill" style="width: 95%;"></div></div>
+      <div class="m-info">
+        <span class="m-val">%95</span>
+        <span class="m-lbl">Su Tasarrufu</span>
+      </div>
+    </div>
+    <div class="metric-row">
+      <div class="m-bar"><div class="m-fill" style="width: 50%;"></div></div>
+      <div class="m-info">
+        <span class="m-val">%50</span>
+        <span class="m-lbl">Daha Hızlı Büyüme</span>
+      </div>
+    </div>
+    <div class="metric-row">
+      <div class="m-bar"><div class="m-fill" style="width: 80%;"></div></div>
+      <div class="m-info">
+        <span class="m-val">%80</span>
+        <span class="m-lbl">Alan Tasarrufu</span>
+      </div>
+    </div>
+    <div class="metric-row">
+      <div class="m-bar"><div class="m-fill" style="width: 100%;"></div></div>
+      <div class="m-info">
+        <span class="m-val">%100</span>
+        <span class="m-lbl">Sıfır Pestisit (İlaç)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="sistem" class="sistem-wrap">
+  <div class="section-label">Nasıl çalışır</div>
+  <h2 class="section-title">Tohumdan taze hasada,<br><em>tamamen otonom.</em></h2>
+  <p class="how-sub">
+    Dört aşamalı akıllı sürecimiz; ekimden hasada kadar insan müdahalesini minimuma indirir ve bitkinin genetik potansiyelini en üst düzeye çıkarır.
+  </p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-icon">🛡️</div>
+      <h3>Sıfır Stres Ortamı</h3>
+      <p>Dış hava koşullarından bağımsız, 24 saat sabitlenen ideal değerler sayesinde bitki sadece büyümeye odaklanır.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-icon">💧</div>
+      <h3>Besin Döngüsü</h3>
+      <p>pH ve EC değerleri sürekli izlenerek mineral solüsyonu otomatik olarak dengelenir ve suya aktarılır.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-icon">🤖</div>
+      <h3>Sürekli Takip</h3>
+      <p>Kamera sensörleri ve büyüme algoritmaları en verimli hasat anını ve çileklerin olgunluk derecesini tespit eder.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-icon">🧺</div>
+      <h3>Zahmetsiz Hasat</h3>
+      <p>Doğrudan yaşam alanınızda yetişen ürünleri, en taze anında dalından koparıp güvenle tüketebilirsiniz.</p>
+    </div>
+  </div>
+</div>
+
+<div id="ev-sistemleri" class="ev-wrap">
+  <div class="ev-grid">
+    <div>
+      <div class="section-label">Modüler Yaşam Alanı</div>
+      <h2 class="section-title">Sizinle birlikte büyüyen,<br><em>akıllı ev ekosistemi.</em></h2>
+      <p style="font-size: 1.05rem; line-height: 1.75; margin-bottom: 2rem; color: rgba(255,255,255,0.8); max-width: 700px;">
+        Profesyonel hidroponik teknolojisini evinizin dekorasyonuna uyum sağlayacak şekilde tasarladık. İhtiyacınıza göre şekillenebilen bu sistem, modüler yapısı sayesinde dilediğiniz an kapasitesini artırmanıza olanak tanır.
+      </p>
+      <div class="ev-features">
+        <div class="tech-feature">
+          <div class="tf-icon">🧩</div>
+          <div class="tf-content">
+            <h4>Basit Kurulum ve Modülerlik</h4>
+            <p>Karmaşık su tesisatlarına gerek yok. Tıpkı lego parçaları gibi birbirine geçen modüllerle dilediğiniz zaman yeni katmanlar ekleyebilirsiniz.</p>
+          </div>
+        </div>
+        <div class="tech-feature">
+          <div class="tf-icon">🛜</div>
+          <div class="tf-content">
+            <h4>Tam Otonom Wi-Fi Entegrasyonu</h4>
+            <p>Sistem ev ağınıza bağlandığı andan itibaren tüm yönetimi devralır. Optimum su dengesini ve aydınlatmayı kendi ayarlar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone-container">
+      <div class="phone-mockup">
+        <div class="app-screen">
+          <div class="app-header">
+            <span class="app-title">nextgengrow<span>.</span></span>
+            <div class="app-status"><div class="dot"></div> CANLI</div>
+          </div>
+
+          <div class="app-card highlight">
+            <h4>Sistem Durumu</h4>
+            <span class="val">Fesleğen & Çilek</span>
+            <span class="unit" style="color: rgba(255,255,255,0.7);">Büyüme Evresi: 3. Hafta</span>
+          </div>
+
+          <div class="app-card">
+            <h4>Su Seviyesi</h4>
+            <span class="val">84<span class="unit">%</span></span>
+            <span class="unit">Tahmini dolum: 12 gün sonra</span>
+          </div>
+
+          <div class="app-card" style="border-left: 3px solid #ff5555;">
+            <h4>Besin Solüsyonu</h4>
+            <span class="val" style="color: #ffb86c;">1.2<span class="unit" style="color: #aaa;"> mS/cm</span></span>
+            <span class="unit">Motorlar otomatik dengeliyor...</span>
+          </div>
+
+          <div class="app-btn-wrap">
+            <button class="app-btn" disabled>Çok Yakında 🚀</button>
+            <span class="app-note">Arayüz Geliştirme Aşamasında</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="teknoloji" class="tech-wrap">
+  <div class="section-label">Teknoloji</div>
+  <h2 class="section-title">Her yaprak bir<br><em>veri noktası.</em></h2>
+
+  <div class="tech-container">
+    <div class="t-feature-list">
+      <div class="t-row">
+        <div class="t-icon-box">🌡️</div>
+        <div class="t-text">
+          <h4>Çok Parametreli Sensör Ağı</h4>
+          <p>Sıcaklık, nem, ışık yoğunluğu, pH ve EC değerleri sistem tarafından sürekli izlenir. Bitkinin anlık ihtiyacı belirlenir.</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-icon-box">📸</div>
+        <div class="t-text">
+          <h4>Kamera ile Büyüme Takibi</h4>
+          <p>Kameralar yardımıyla bitkinizin gelişim evreleri izlenir. Hasat olgunluğuna ulaştığında size haber verilir.</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-icon-box">⚡</div>
+        <div class="t-text">
+          <h4>Otonom Müdahale Döngüleri</h4>
+          <p>Su eksildiğinde veya besin değerleri değiştiğinde sistem dışarıdan müdahale beklemez. Kendi kendini düzeltir.</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-icon-box">☀️</div>
+        <div class="t-text">
+          <h4>Akıllı LED Optimizasyonu</h4>
+          <p>Bitkilerin büyüme fazına göre ışık spektrumu otomatik ayarlanır, böylece maksimum fotosentez sağlanır.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech-css-art">
+      <div class="core-node">
+        <div class="core-pulse"></div>
+      </div>
+      <div class="data-line dl1"><span class="data-tag">pH: 6.0</span></div>
+      <div class="data-line dl2"><span class="data-tag">EC: 1.2 mS</span></div>
+      <div class="data-line dl3"><span class="data-tag">IŞIK: %85</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="vizyon" class="vizyon-wrap">
+  <div class="section-label">Hedeflerimiz</div>
+  <h2 class="section-title">Tohumdan sofraya,<br><em>bütünleşik bir vizyon.</em></h2>
+  <p class="vision-intro">
+    Sistemimiz olgunlaştıkça üretmek istediğimiz temel çıktılar; herkes için kolay ulaşılabilir taze ürünler ve sürdürülebilir bir tarım ekosistemidir.
+  </p>
+  <div class="vision-grid">
+    <div class="vision-card featured">
+      <div class="vicon">🍓🌿</div>
+      <h3>Taze ve Doğal Hasat</h3>
+      <p>Sistemimizin birincil çıktısı: kontrollü ortamda, sıfır tarım ilacıyla yetişmiş taze çilekler ve aromatik fesleğenler.</p>
+      <span class="vision-tag">Temel Hedef</span>
+    </div>
+    <div class="vision-card">
+      <div class="vicon">🏡</div>
+      <h3>Her Eve Akıllı Tarım</h3>
+      <p>Otonom hidroponik teknolojimizi herkesin kendi evinde kolayca kullanabileceği şık ve kompakt sistemlere dönüştürmek.</p>
+      <span class="vision-tag">B2C Vizyonu</span>
+    </div>
+    <div class="vision-card">
+      <div class="vicon">🌍</div>
+      <h3>Sürdürülebilir Ekosistem</h3>
+      <p>Sensör verileri ve yapay zeka ile sürekli kendini optimize eden, doğaya saygılı teknolojik bir ağ kurmak.</p>
+      <span class="vision-tag">Gelecek Odaklı</span>
+    </div>
+  </div>
+</div>
+
+<div id="iletisim" class="cta-wrap">
+  <div class="section-label">Bize Ulaşın</div>
+  <h2 class="section-title">Bu projeyi<br><em>birlikte büyütelim.</em></h2>
+  <p class="cta-sub">
+    Proje hakkında soru sormak, fikir paylaşmak veya gelişmelerimizi
+    takip etmek istiyorsanız bize ulaşın.
+  </p>
+  <a class="cta-email" href="mailto:info@nextgengrow.com.tr">
+    info&#64;nextgengrow.com.tr
+  </a>
+</div>
+
+<footer>
+  <a href="#" class="footer-logo">NextGenGrow<span>.</span></a>
+  <p class="footer-copy">© 2026 NextGenGrow — nextgengrow.com.tr</p>
+  <div class="footer-links">
+    <a href="mailto:info@nextgengrow.com.tr">info&#64;nextgengrow.com.tr</a>
+    <a href="https://www.instagram.com/next.gen.grow?igsh=aTlxOWE3cG5nM2cy" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </div>
+</footer>
+
+</body>
+</html>
 
