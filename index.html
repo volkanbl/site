@@ -65,7 +65,7 @@ nav {
 }
 .nav-cta:hover { background: var(--green-600) !important; }
 
-/* HERO - Tam Ekran Uyumlu */
+/* HERO - Masaüstü Geniş */
 .hero {
   min-height: 100vh;
   display: grid; grid-template-columns: 1.2fr 0.8fr;
@@ -166,21 +166,11 @@ nav {
 .sc1 { bottom: 8%; left: -10%; }
 .sc2 { top: 10%; right: -8%; }
 
-/* KAYAN YAZI (İLK HALİ) */
-.marquee-wrap {
-  overflow: hidden; background: var(--green-700); padding: 0.9rem 0; width: 100%;
-}
-.marquee-track {
-  display: flex; gap: 3rem;
-  animation: marquee 22s linear infinite;
-  width: max-content;
-}
+/* KAYAN YAZI */
+.marquee-wrap { overflow: hidden; background: var(--green-700); padding: 0.9rem 0; width: 100%; }
+.marquee-track { display: flex; gap: 3rem; animation: marquee 22s linear infinite; width: max-content; }
 @keyframes marquee { to { transform: translateX(-50%); } }
-.marquee-item {
-  font-size: 0.78rem; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--green-100);
-  display: flex; align-items: center; gap: 1rem; white-space: nowrap;
-}
+.marquee-item { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-100); display: flex; align-items: center; gap: 1rem; white-space: nowrap; }
 .marquee-item::after { content: '✦'; color: var(--green-400); font-size: 0.6rem; }
 
 /* SECTIONS BASE */
@@ -191,13 +181,11 @@ nav {
 }
 .section-title em { color: var(--green-500); font-style: italic; }
 
-/* AVANTAJLAR - %100 Ekran Kaplama */
+/* AVANTAJLAR */
 .about-grid {
   display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6vw; align-items: center;
-  background: var(--cream-dark); padding: 7rem 5vw;
-  width: 100%;
-  border-top: 1px solid rgba(90,107,42,0.1);
-  border-bottom: 1px solid rgba(90,107,42,0.1);
+  background: var(--cream-dark); padding: 7rem 5vw; width: 100%;
+  border-top: 1px solid rgba(90,107,42,0.1); border-bottom: 1px solid rgba(90,107,42,0.1);
 }
 .about-grid p { font-size: 1rem; line-height: 1.85; color: var(--ink-soft); font-weight: 300; margin-bottom: 1.2rem; max-width: 800px; }
 .metrics-box {
@@ -209,10 +197,10 @@ nav {
 .m-bar { flex-grow: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; position: relative; }
 .m-fill { position: absolute; left: 0; top: 0; height: 100%; background: var(--green-200); border-radius: 10px; }
 .m-info { width: 140px; text-align: right; }
-.m-val { font-family: 'DM Serif Display', serif; font-size: 1.5rem; display: block; }
+.m-val { font-family: 'DM Serif Display', serif; font-size: 1.5rem; display: block; line-height: 1;}
 .m-lbl { font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; }
 
-/* SİSTEM - %100 Genişlik */
+/* SİSTEM */
 .sistem-wrap { padding: 7rem 5vw; text-align: center; background: var(--cream); width: 100%; }
 .how-sub { font-size: 1rem; color: var(--ink-soft); font-weight: 300; max-width: 600px; margin: 0 auto 4rem; line-height: 1.7;}
 .steps {
@@ -226,7 +214,7 @@ nav {
 .step h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--ink); margin-bottom: 0.8rem; }
 .step p { font-size: 0.9rem; line-height: 1.7; color: var(--ink-soft); font-weight: 300; }
 
-/* EV SİSTEMLERİ - Tam Ekran Kaplama */
+/* EV SİSTEMLERİ */
 .ev-wrap { background: var(--ink); color: var(--cream); padding: 7rem 5vw; width: 100%; }
 .ev-wrap .section-label { color: var(--green-400); }
 .ev-wrap .section-title { color: var(--cream); }
@@ -254,7 +242,7 @@ nav {
   background: #1a1a1a; border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; z-index: 10;
 }
 .app-screen {
-  background: #0f100f; flex-grow: 1; padding: 3.5rem 1.2rem 1rem;
+  background: #0f100f; flex-grow: 1; padding: 3.5rem 1.2rem 1rem; 
   position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 0.8rem;
 }
 .app-screen::after {
@@ -282,7 +270,7 @@ nav {
 }
 .app-note { display: block; font-size: 0.65rem; color: #666; margin-top: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; }
 
-/* TEKNOLOJİ - Tam Ekran */
+/* TEKNOLOJİ */
 .tech-wrap { background: var(--cream-dark); padding: 7rem 5vw; width: 100%; border-bottom: 1px solid rgba(90,107,42,0.1); }
 .tech-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6vw; align-items: center; width: 100%; }
 .t-feature-list { display: flex; flex-direction: column; }
@@ -292,8 +280,9 @@ nav {
 .t-text h4 { font-size: 1.05rem; color: var(--ink); font-weight: 500; margin-bottom: 0.4rem; }
 .t-text p { font-size: 0.88rem; line-height: 1.6; color: var(--ink-soft); font-weight: 300; }
 
+.tech-css-art-wrap { display: flex; justify-content: center; width: 100%; overflow: hidden; padding: 2rem 0; }
 .tech-css-art {
-  width: 100%; aspect-ratio: 4/5;
+  width: 100%; max-width: 400px; aspect-ratio: 4/5;
   background: radial-gradient(circle at center, #1a2a14 0%, #0d1a08 100%);
   border-radius: 24px; position: relative; overflow: hidden;
   box-shadow: 0 20px 40px rgba(13,48,2,0.15);
@@ -332,19 +321,19 @@ nav {
   color: var(--green-100); padding: 0.3rem 0.6rem; border-radius: 8px;
   font-size: 0.75rem; letter-spacing: 0.1em; white-space: nowrap;
 }
-.dl1 { width: 120px; height: 2px; top: 30%; left: 50%; transform-origin: left; transform: rotate(-35deg); }
+.dl1 { width: 100px; height: 2px; top: 30%; left: 50%; transform-origin: left; transform: rotate(-35deg); }
 .dl1::before { right: 0; }
 .dl1 .data-tag { position: absolute; right: -60px; transform: rotate(35deg); }
 
-.dl2 { width: 140px; height: 2px; top: 50%; right: 50%; transform-origin: right; transform: rotate(-15deg); }
+.dl2 { width: 110px; height: 2px; top: 50%; right: 50%; transform-origin: right; transform: rotate(-15deg); }
 .dl2::before { left: 0; }
 .dl2 .data-tag { position: absolute; left: -70px; transform: rotate(15deg); }
 
-.dl3 { width: 110px; height: 2px; bottom: 25%; left: 50%; transform-origin: left; transform: rotate(45deg); }
+.dl3 { width: 90px; height: 2px; bottom: 25%; left: 50%; transform-origin: left; transform: rotate(45deg); }
 .dl3::before { right: 0; }
 .dl3 .data-tag { position: absolute; right: -50px; transform: rotate(-45deg); }
 
-/* VİZYON - Tam Genişlik */
+/* VİZYON */
 .vizyon-wrap { background: var(--green-700); padding: 7rem 5vw; width: 100%; }
 .vizyon-wrap .section-label { color: var(--green-200); }
 .vizyon-wrap .section-title { color: var(--cream); }
@@ -360,10 +349,10 @@ nav {
 .vision-card p { font-size: 0.95rem; line-height: 1.75; opacity: 0.85; font-weight: 300; }
 .vision-tag { display: inline-block; margin-top: 1.5rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 2rem; background: rgba(255,255,255,0.15); }
 
-/* İLETİŞİM KISMI (İLK HALİNE DÖNDÜ & SAYFAYI KAPLADI) */
+/* İLETİŞİM (İLK HALİ + TAM EKRAN) */
 .cta-wrap {
-  text-align: center;
-  background: var(--cream-dark); /* Açık renge geri döndü */
+  text-align: center; 
+  background: var(--cream-dark);
   padding: 8rem 5vw;
   width: 100%;
   border-top: 1px solid rgba(90,107,42,0.15);
@@ -376,7 +365,7 @@ nav {
 }
 .cta-email:hover { background: var(--green-600); transform: translateY(-1px); }
 
-/* FOOTER - Tam Genişlik */
+/* FOOTER */
 footer { display: flex; justify-content: space-between; align-items: center; padding: 3rem 5vw; width: 100%; background: var(--cream); }
 .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--green-500); text-decoration: none; }
 .footer-logo span { color: var(--rust); font-style: italic; }
@@ -385,7 +374,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 .footer-links a { font-size: 0.85rem; color: var(--ink-soft); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
 .footer-links a:hover { opacity: 1; }
 
-/* MOBİL VE TABLET UYUMLULUK (Responsive Yapı) */
+/* MOBİL VE TABLET UYUMLULUK (Responsive Derleme) */
 @media (max-width: 900px) {
   nav { padding: 1.5rem 5vw; }
   .nav-links { display: none; }
@@ -395,25 +384,40 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .hero-visual { order: -1; }
   .hero-ring { width: 300px; height: 300px; }
   .sc1, .sc2 { display: none; }
-
-  .about-grid, .ev-grid, .tech-container, .vision-grid { grid-template-columns: 1fr; gap: 4rem; }
+  
+  .about-grid, .ev-grid, .tech-container, .vision-grid { grid-template-columns: 1fr; gap: 3rem; }
   .steps { grid-template-columns: 1fr 1fr; }
-
-  .phone-mockup { transform: scale(0.9); transform-origin: top center; margin-bottom: -60px; }
-
+  
   footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 3rem 5vw; }
 }
 
+/* TOPARLANMIŞ MOBİL DENEYİMİ */
 @media (max-width: 600px) {
-  .hero-title { font-size: 3.2rem; }
-  .hero-ring { width: 260px; height: 260px; }
+  .hero { padding: 6rem 5vw 3rem; }
+  .hero-title { font-size: 2.8rem; }
+  .hero-ring { width: 240px; height: 240px; }
+  
+  /* Daha dar dikey paddingler ile toparlanmış görünüm */
+  .about-grid, .sistem-wrap, .ev-wrap, .tech-wrap, .vizyon-wrap, .cta-wrap { padding: 4rem 5vw; }
+  
+  /* İç içe boşlukları kapattık */
+  .about-grid, .ev-grid, .tech-container, .vision-grid { gap: 2rem; }
+  
+  /* Adımlar kartlarını mobilde rahatlattık */
   .steps { grid-template-columns: 1fr; }
-  .phone-mockup { transform: scale(0.8); margin-bottom: -120px; }
-
-  .about-grid { padding: 5rem 5vw; }
-  .sistem-wrap, .ev-wrap, .tech-wrap, .vizyon-wrap, .cta-wrap { padding: 5rem 5vw; }
-  .metric-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-  .m-info { text-align: left; width: 100%; display: flex; justify-content: space-between; align-items: center;}
+  .step { padding: 2.5rem 1.5rem; }
+  
+  /* Metrikleri düzgün hizaladık */
+  .metrics-box { padding: 2rem 1.5rem; }
+  .metric-row { flex-direction: row; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; margin-bottom: 1rem; }
+  .m-bar { display: none; } /* Dar ekranda çubukları gizleyip sadece veriyi odakladık */
+  .m-info { text-align: right; width: auto; }
+  
+  /* Mockup ve YZ Animasyonu Taşmalarını Engellemek için Küçülttük */
+  .phone-mockup { transform: scale(0.85); transform-origin: top center; margin-bottom: -50px; }
+  .tech-css-art { transform: scale(0.75); transform-origin: center center; margin: -2rem 0; }
+  
+  .vision-card { padding: 2rem 1.5rem; }
 }
 </style>
 </head>
@@ -467,7 +471,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
     <span class="marquee-item">Sürdürülebilir tarım</span>
     <span class="marquee-item">Sıfır toprak, sıfır ilaç</span>
     <span class="marquee-item">Kapalı döngü sistem</span>
-
+    
     <span class="marquee-item">Hidroponik sistem</span>
     <span class="marquee-item">Yapay zeka kontrolü</span>
     <span class="marquee-item">Taze fesleğen ve çilek</span>
@@ -491,32 +495,24 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   <div class="metrics-box">
     <div class="metrics-label">Geleneksel Tarıma Kıyasla Avantajlar</div>
     <div class="metric-row">
+      <div class="m-lbl">Su Tasarrufu</div>
       <div class="m-bar"><div class="m-fill" style="width: 95%;"></div></div>
-      <div class="m-info">
-        <span class="m-val">%95</span>
-        <span class="m-lbl">Su Tasarrufu</span>
-      </div>
+      <div class="m-info"><span class="m-val">%95</span></div>
     </div>
     <div class="metric-row">
+      <div class="m-lbl">Daha Hızlı Büyüme</div>
       <div class="m-bar"><div class="m-fill" style="width: 50%;"></div></div>
-      <div class="m-info">
-        <span class="m-val">%50</span>
-        <span class="m-lbl">Daha Hızlı Büyüme</span>
-      </div>
+      <div class="m-info"><span class="m-val">%50</span></div>
     </div>
     <div class="metric-row">
+      <div class="m-lbl">Alan Tasarrufu</div>
       <div class="m-bar"><div class="m-fill" style="width: 80%;"></div></div>
-      <div class="m-info">
-        <span class="m-val">%80</span>
-        <span class="m-lbl">Alan Tasarrufu</span>
-      </div>
+      <div class="m-info"><span class="m-val">%80</span></div>
     </div>
     <div class="metric-row">
+      <div class="m-lbl" style="padding-bottom: 0;">Sıfır İlaç / Pestisit</div>
       <div class="m-bar"><div class="m-fill" style="width: 100%;"></div></div>
-      <div class="m-info">
-        <span class="m-val">%100</span>
-        <span class="m-lbl">Sıfır Pestisit (İlaç)</span>
-      </div>
+      <div class="m-info"><span class="m-val">%100</span></div>
     </div>
   </div>
 </div>
@@ -620,7 +616,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 <div id="teknoloji" class="tech-wrap">
   <div class="section-label">Teknoloji</div>
   <h2 class="section-title">Her yaprak bir<br><em>veri noktası.</em></h2>
-
+  
   <div class="tech-container">
     <div class="t-feature-list">
       <div class="t-row">
@@ -653,13 +649,15 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       </div>
     </div>
 
-    <div class="tech-css-art">
-      <div class="core-node">
-        <div class="core-pulse"></div>
+    <div class="tech-css-art-wrap">
+      <div class="tech-css-art">
+        <div class="core-node">
+          <div class="core-pulse"></div>
+        </div>
+        <div class="data-line dl1"><span class="data-tag">pH: 6.0</span></div>
+        <div class="data-line dl2"><span class="data-tag">EC: 1.2 mS</span></div>
+        <div class="data-line dl3"><span class="data-tag">IŞIK: %85</span></div>
       </div>
-      <div class="data-line dl1"><span class="data-tag">pH: 6.0</span></div>
-      <div class="data-line dl2"><span class="data-tag">EC: 1.2 mS</span></div>
-      <div class="data-line dl3"><span class="data-tag">IŞIK: %85</span></div>
     </div>
   </div>
 </div>
@@ -715,4 +713,3 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 
 </body>
 </html>
-
